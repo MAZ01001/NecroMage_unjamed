@@ -1,6 +1,10 @@
 # Necro Mage
 
-Unjamed version of [https://maz00101.itch.io/necro-mage](https://maz00101.itch.io/necro-mage).
+Unjamed version of a one-week [game jam](https://itch.io/jam/gamedevweek-2022-2/entries) [game](https://maz00101.itch.io/necro-mage).
+
+<iframe frameborder="0" src="https://itch.io/embed/1705317?bg_color=081a25&amp;fg_color=edd8a0&amp;link_color=7aba97&amp;border_color=334934" width="552" height="167">
+    <a href="https://maz00101.itch.io/necro-mage">Necro Mage by MAZ, Stiftoad, Hadesdoc</a>
+</iframe>
 
 ## Description
 
