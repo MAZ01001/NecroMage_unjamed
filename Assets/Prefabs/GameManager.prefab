@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1834243277536512514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1834243277536512512}
+  - component: {fileID: 1834243277536512513}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1834243277536512512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834243277536512514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1834243277536512513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834243277536512514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd0b069647c0ce4c894b8404e5da173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: e41b9c1740e2be645ba8485a609713da, type: 2}
+  resolutionDropdownUI: {fileID: 0}
+  timerText: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
+  gameOverMenuUI: {fileID: 0}
+  highscoreTMPro: {fileID: 0}
+  upgradeMenuUI: {fileID: 0}
+  startTime: 600
+  level: 1
+  experience: 0
+  experienceSlider: {fileID: 0}
+  minionContainer: {fileID: 0}
+  allMinionPrefabs:
+  - {fileID: 3650090750276049826, guid: 681c388a9fbd0444d90b4182ccc9e043, type: 3}
+  - {fileID: 3650090750276049826, guid: 5a61b15c52c9e424c829bddc82075f30, type: 3}
+  - {fileID: 3650090750276049826, guid: fd607e8a55fa16049af419d8fa160494, type: 3}
+  - {fileID: 3650090750276049826, guid: 9a28f8bfc10266348b7d75f2829c3f76, type: 3}
+  maxMinionClones: 3
+  upgradeText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

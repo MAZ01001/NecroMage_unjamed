@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5689740132604449124
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2724138089008785712, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_Name
+      value: Conifer1_var3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757534303191499919, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1048897633383830326, guid: 3d4549aba05a5ba40955ecc4e655d418,
+        type: 3}
+    - target: {fileID: 6999612641123520912, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_Name
+      value: SM_Conifer4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800986865670811717, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e2e22c231f3843b409f4a91d89755d51, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b8a6668c9b42df4bbb3a44f29e6da79, type: 3}
+--- !u!23 &3807061682459762977 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8800986865670811717, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+    type: 3}
+  m_PrefabInstance: {fileID: 5689740132604449124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7725944582165690452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2724138089008785712, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
+    type: 3}
+  m_PrefabInstance: {fileID: 5689740132604449124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!205 &2474112821780591294
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7725944582165690452}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.047466636, y: 1.6569359, z: 0.009455681}
+  m_Size: 3.3460326
+  m_FadeMode: 2
+  m_AnimateCrossFading: 1
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.40248856
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3807061682459762977}
+  - screenRelativeHeight: 0.19297718
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3807061682459762977}
+  - screenRelativeHeight: 0.087719455
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3807061682459762977}
+  m_Enabled: 1
