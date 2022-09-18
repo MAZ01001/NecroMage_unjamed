@@ -510,21 +510,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizurd Minion 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5413612582162539822, guid: 9a28f8bfc10266348b7d75f2829c3f76,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5413612582162539822, guid: 9a28f8bfc10266348b7d75f2829c3f76,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5413612582162539822, guid: 9a28f8bfc10266348b7d75f2829c3f76,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8477467945429870939, guid: 9a28f8bfc10266348b7d75f2829c3f76,
         type: 3}
       propertyPath: gameManager
@@ -2421,7 +2406,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.70113486, y: 0.000000011347553, z: -0.0000000029385057, w: 0.7130287}
+  m_LocalRotation: {x: 0.70113486, y: 0.0000000113475505, z: -0.0000000029385054,
+    w: 0.7130287}
   m_LocalPosition: {x: 0, y: 12.110254, z: 1.8038491}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3760,21 +3746,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Barb Minion
-      objectReference: {fileID: 0}
-    - target: {fileID: 4134443776827874724, guid: 681c388a9fbd0444d90b4182ccc9e043,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4134443776827874724, guid: 681c388a9fbd0444d90b4182ccc9e043,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4134443776827874724, guid: 681c388a9fbd0444d90b4182ccc9e043,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 8477467945429870939, guid: 681c388a9fbd0444d90b4182ccc9e043,
         type: 3}
@@ -6701,21 +6672,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bull Minion
       objectReference: {fileID: 0}
-    - target: {fileID: 6971083275867905833, guid: 5a61b15c52c9e424c829bddc82075f30,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971083275867905833, guid: 5a61b15c52c9e424c829bddc82075f30,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971083275867905833, guid: 5a61b15c52c9e424c829bddc82075f30,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8477467945429870939, guid: 5a61b15c52c9e424c829bddc82075f30,
         type: 3}
       propertyPath: gameManager
@@ -6957,26 +6913,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f964d35a5ebd154ab7dbd1b2740f4b1, type: 3}
---- !u!1 &1251323298 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3840509736836301653, guid: 7f964d35a5ebd154ab7dbd1b2740f4b1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1251323297}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1251323299
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251323298}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1278448232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9630,21 +9566,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spearboy Minion
       objectReference: {fileID: 0}
-    - target: {fileID: 8171579266630165316, guid: fd607e8a55fa16049af419d8fa160494,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8171579266630165316, guid: fd607e8a55fa16049af419d8fa160494,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8171579266630165316, guid: fd607e8a55fa16049af419d8fa160494,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8477467945429870939, guid: fd607e8a55fa16049af419d8fa160494,
         type: 3}
       propertyPath: gameManager
@@ -10156,8 +10077,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957262429}
-  m_LocalRotation: {x: -0.44927326, y: -0.000000021200243, z: 0.000000027822827, w: 0.8933945}
-  m_LocalPosition: {x: -0.00000005044902, y: -2.9575262, z: 9.111799}
+  m_LocalRotation: {x: -0.44927326, y: 0.0000000013927526, z: -0.000000015282088,
+    w: 0.8933945}
+  m_LocalPosition: {x: -0.000000050449064, y: -2.9575262, z: 9.111799}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10648,7 +10570,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047007188}
-  m_LocalRotation: {x: 0.70113486, y: 0.000000011347553, z: -0.0000000029385057, w: 0.7130287}
+  m_LocalRotation: {x: 0.70113486, y: 0.0000000113475505, z: -0.0000000029385054,
+    w: 0.7130287}
   m_LocalPosition: {x: 0, y: 12.110254, z: 1.8038491}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
