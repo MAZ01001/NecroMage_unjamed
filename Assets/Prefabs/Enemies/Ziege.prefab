@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 3753696184011878240}
   - component: {fileID: 268219031717015552}
   - component: {fileID: 7737500532411675234}
-  - component: {fileID: 6088602304781970066}
-  - component: {fileID: 1251323299}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -85,39 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6088602304781970066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3840509736836301653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab90577b3708dcb479719c965f7529ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frames:
-  - {fileID: 2800000, guid: 707b672e30ee24749880c1a26e9ac42e, type: 3}
-  - {fileID: 2800000, guid: 11bed980c3a2789498a505d61613a1d3, type: 3}
-  - {fileID: 2800000, guid: 781fce1d2ae6e714ab040a4d2298876a, type: 3}
-  - {fileID: 2800000, guid: 2022b79cc672e0f4bbe5bbb6edce64d7, type: 3}
-  - {fileID: 2800000, guid: 27f248957977e2b4aa5e7bb591e8560a, type: 3}
-  fps: 5
---- !u!64 &1251323299
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3840509736836301653}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &6828260513644454495
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +155,6 @@ MonoBehaviour:
   dropHP: 0
   dropXP: 0
   attackBehaviour: {fileID: 11400000, guid: 8f6c9dafb1dcf48489276e7f4abc72ac, type: 2}
-  closestDistance: 0.8
   experianceReward: 400
   enemiesDefeated: 0
 --- !u!195 &8122185164032480710

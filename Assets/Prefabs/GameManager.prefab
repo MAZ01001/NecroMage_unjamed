@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1834243277536512512}
   - component: {fileID: 1834243277536512513}
+  - component: {fileID: 7873364947403226336}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -67,3 +68,48 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &7873364947403226336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834243277536512514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4669fd649127f234eaa4f03169955ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gifAnimations:
+  - gifMaterial: {fileID: 2100000, guid: 5213209888112cb459ff5583f90125a7, type: 2}
+    frames:
+    - {fileID: 2800000, guid: 707b672e30ee24749880c1a26e9ac42e, type: 3}
+    - {fileID: 2800000, guid: 11bed980c3a2789498a505d61613a1d3, type: 3}
+    - {fileID: 2800000, guid: 781fce1d2ae6e714ab040a4d2298876a, type: 3}
+    - {fileID: 2800000, guid: 2022b79cc672e0f4bbe5bbb6edce64d7, type: 3}
+    - {fileID: 2800000, guid: 27f248957977e2b4aa5e7bb591e8560a, type: 3}
+    fps: 5
+  - gifMaterial: {fileID: 2100000, guid: 22be6e971b8c6ae40932a6e083cadce6, type: 2}
+    frames:
+    - {fileID: 2800000, guid: c324d2adfd67e9742a08e9aae88f1f22, type: 3}
+    - {fileID: 2800000, guid: 3659bac9298256f4b855714f0e08c093, type: 3}
+    - {fileID: 2800000, guid: a50b4bf172751214383c65ac814438b2, type: 3}
+    - {fileID: 2800000, guid: 7f34851a9648bee4dad72af2375d7585, type: 3}
+    - {fileID: 2800000, guid: 59a76a09c926f5f4e8fd9bf8a1a7d7da, type: 3}
+    fps: 5
+  - gifMaterial: {fileID: 2100000, guid: b4c38a52f451bd942b37294ea3a1c233, type: 2}
+    frames:
+    - {fileID: 2800000, guid: 64e26fac812cdfb498a5cde10e9b4d4f, type: 3}
+    - {fileID: 2800000, guid: 5507abbe4ea76a5418d17f4d3f48e171, type: 3}
+    - {fileID: 2800000, guid: 598cf38595dbcfa4892f2f7eb4508360, type: 3}
+    - {fileID: 2800000, guid: b92f9851feaafb042af6ed927334caee, type: 3}
+    - {fileID: 2800000, guid: 7e84c817c19651745a22721d01cfb223, type: 3}
+    fps: 5
+  - gifMaterial: {fileID: 2100000, guid: 3e7fd607d919704499db2edda03c4a94, type: 2}
+    frames:
+    - {fileID: 2800000, guid: c24995c951ddb384a9b43df2f3f6da6f, type: 3}
+    - {fileID: 2800000, guid: 826a878e89f917e40bf2f8504d996e54, type: 3}
+    - {fileID: 2800000, guid: 0d9c8452b23dc394da5e6da9a3b9dca7, type: 3}
+    - {fileID: 2800000, guid: 642b993df161a0843a35feae87855b32, type: 3}
+    - {fileID: 2800000, guid: 33defe81cf1c0914ebaf68f1f774a17e, type: 3}
+    fps: 5

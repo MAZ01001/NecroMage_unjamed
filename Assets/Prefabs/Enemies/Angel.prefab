@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 3753696184011878240}
   - component: {fileID: 268219031717015552}
   - component: {fileID: 7737500532411675234}
-  - component: {fileID: 8133754763872886526}
   m_Layer: 10
   m_Name: Visuals
   m_TagString: Untagged
@@ -129,25 +128,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8133754763872886526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3840509736836301653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab90577b3708dcb479719c965f7529ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frames:
-  - {fileID: 2800000, guid: c24995c951ddb384a9b43df2f3f6da6f, type: 3}
-  - {fileID: 2800000, guid: 826a878e89f917e40bf2f8504d996e54, type: 3}
-  - {fileID: 2800000, guid: 0d9c8452b23dc394da5e6da9a3b9dca7, type: 3}
-  - {fileID: 2800000, guid: 642b993df161a0843a35feae87855b32, type: 3}
-  - {fileID: 2800000, guid: 33defe81cf1c0914ebaf68f1f774a17e, type: 3}
-  fps: 5
 --- !u!1 &6828260513644454495
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +201,6 @@ MonoBehaviour:
   dropHP: 0
   dropXP: 0
   attackBehaviour: {fileID: 11400000, guid: 8f6c9dafb1dcf48489276e7f4abc72ac, type: 2}
-  closestDistance: 0.8
   experianceReward: 400
   enemiesDefeated: 0
 --- !u!195 &8122185164032480710
