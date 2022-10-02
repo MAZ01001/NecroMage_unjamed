@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2724138089008785712, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
         type: 3}
       propertyPath: m_Name
-      value: Conifer1_var6
+      value: Prefab_Conifer1_var6
       objectReference: {fileID: 0}
     - target: {fileID: 5907753335160089157, guid: 7b8a6668c9b42df4bbb3a44f29e6da79,
         type: 3}
@@ -77,7 +77,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 533618d0a335d85448f027b8d871a608, type: 2}
+      objectReference: {fileID: 2100000, guid: 4689b686b1af9104196663a33220ae9a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b8a6668c9b42df4bbb3a44f29e6da79, type: 3}
 --- !u!23 &3807061682459762977 stripped
