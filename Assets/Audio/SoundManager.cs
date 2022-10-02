@@ -1,88 +1,67 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class SoundManager : MonoBehaviour
-{
-	// Audio players components.
-	public AudioSource EffectsSource;
-	public AudioSource MusicSource;
-	// Random pitch adjustment range.
-	public float LowPitchRange = .95f;
-	public float HighPitchRange = 1.05f;
-	// Singleton instance.
-	public static SoundManager Instance = null;
-	public AudioClip MenuMusic;
-	public AudioClip AlternativeMenuMusic;
-	public AudioClip Music;
-	public AudioClip AlternativeMusic;
-	private int random;
-	// Initialize the singleton instance.
-	private void Awake()
-	{
-		// If there is not already an instance of SoundManager, set it to this.
-		if (Instance == null)
-		{
-			Instance = this;
-		}
-		//If an instance already exists, destroy whatever this object is to enforce the singleton.
-		else if (Instance != this)
-		{
-			Destroy(gameObject);
-		}
-		//Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
-		random = Random.Range(0, 99);
-		if (random <= 94)
-		{
-			PlayMusic(MenuMusic);
-		}
-		else
-        {
-			PlayMusic(AlternativeMenuMusic);
+
+public class SoundManager : MonoBehaviour{
+    //~ inspector (private)
+    [Header("Audio sources")]
+    [SerializeField][Tooltip("The audio source for effects")]                             private AudioSource EffectsSource;
+    [SerializeField][Tooltip("The audio source for music")]                               private AudioSource MusicSource;
+    [Header("Pitch limits")]
+    [SerializeField][Min(0f)][Tooltip("The lower limit for random pitch for random sfx")] private float LowPitchRange = 0.95f;
+    [SerializeField][Min(0f)][Tooltip("The upper limit for random pitch for random sfx")] private float HighPitchRange = 1.05f;
+    [Header("Audio clips")]
+    [SerializeField][Tooltip("The main menu music audio file")]                           private AudioClip MenuMusic;
+    [SerializeField][Tooltip("The secret menu music audio file")]                         private AudioClip AlternativeMenuMusic;
+    [SerializeField][Tooltip("The in-game music audio file")]                             private AudioClip Music;
+    [SerializeField][Tooltip("The secret in-game music audio file")]                      private AudioClip AlternativeMusic;
+    //~ private
+    private static SoundManager Instance = null;
+    private static float random;
+
+    private void Awake(){
+        //~ Destroy if a sound manager instance already exists
+        if(SoundManager.Instance != null){
+            Destroy(this.gameObject);
+            return;
         }
-		Object.DontDestroyOnLoad(gameObject);
-	}
-    private void OnEnable()
-    {
-		SceneManager.sceneLoaded += OnSceneLoaded;
-	}
-
-	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-		if (scene.name == "SampleScene")
-        {
-			if (random <= 94)
-			{
-				PlayMusic(Music);
-			}
-			else
-			{
-				PlayMusic(AlternativeMusic);
-			}
-		}
+        //~ Instantiate singleton instance as this instance
+        SoundManager.Instance = this;
+        SoundManager.random = Random.value;
+        SceneManager.sceneLoaded += this.OnSceneLoaded;
+        //~ Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene
+        Object.DontDestroyOnLoad(this.gameObject);
+        //~ Play menu music (do first scene load manually)
+        this.OnSceneLoaded(SceneManager.GetActiveScene(),LoadSceneMode.Single);
     }
- 
-	// Play a single clip through the sound effects source.
-	public void Play(AudioClip clip)
-	{
-		EffectsSource.clip = clip;
-		EffectsSource.Play();
-	}
-	// Play a single clip through the music source.
-	public void PlayMusic(AudioClip clip)
-	{
-		MusicSource.clip = clip;
-		MusicSource.Play();
-	}
-	// Play a random clip from an array, and randomize the pitch slightly.
-	public void RandomSoundEffect(params AudioClip[] clips)
-	{
-		int randomIndex = Random.Range(0, clips.Length);
-		float randomPitch = Random.Range(LowPitchRange, HighPitchRange);
-		EffectsSource.pitch = randomPitch;
-		EffectsSource.clip = clips[randomIndex];
-		EffectsSource.Play();
-	}
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+        //~ set music dependend on scene loaded
+        // TODO change scene name ~ only in-game or main menu as scenes ?
+        if(scene.name == "SampleScene"){
+            if(SoundManager.random <= 0.94f) this.PlayMusic(Music);
+            else this.PlayMusic(AlternativeMusic);
+        }else if(scene.name == "MainMenu"){
+            if(SoundManager.random <= 0.94f) this.PlayMusic(MenuMusic);
+            else this.PlayMusic(AlternativeMenuMusic);
+        }
+    }
+
+    /// <summary> Play a single clip through the sound effects source. </summary>
+    public void Play(AudioClip clip){
+        EffectsSource.clip = clip;
+        EffectsSource.Play();
+    }
+    /// <summary> Play a single clip through the music source. </summary>
+    public void PlayMusic(AudioClip clip){
+        MusicSource.clip = clip;
+        MusicSource.Play();
+    }
+    /// <summary> Play a random clip from an array, and randomize the pitch slightly. </summary>
+    public void RandomSoundEffect(params AudioClip[] clips){
+        int randomIndex = Random.Range(0, clips.Length);
+        float randomPitch = Random.Range(LowPitchRange, HighPitchRange);
+        EffectsSource.pitch = randomPitch;
+        EffectsSource.clip = clips[randomIndex];
+        EffectsSource.Play();
+    }
 }
-

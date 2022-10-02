@@ -50,8 +50,9 @@ MonoBehaviour:
   MusicSource: {fileID: 6968183132411858166}
   LowPitchRange: 0.95
   HighPitchRange: 1.05
-  MenuMusic: {fileID: 0}
-  AlternativeMenuMusic: {fileID: 0}
+  MenuMusic: {fileID: 8300000, guid: d696972e6e009f54eb1e3693ba449281, type: 3}
+  AlternativeMenuMusic: {fileID: 8300000, guid: 785a5f18cfa5f7048b2ce876accea571,
+    type: 3}
   Music: {fileID: 8300000, guid: b9d75d25ff58f5b408ae459bfdba67ad, type: 3}
   AlternativeMusic: {fileID: 8300000, guid: 088aca4df42accc42b5ffb9baef9942c, type: 3}
 --- !u!82 &6968183132411858166
