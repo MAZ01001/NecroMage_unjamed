@@ -2,34 +2,36 @@ using System.Collections;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour{
-    [SerializeField][Tooltip("THE game manager in the scene")]private GameManager gameManager;
-    [SerializeField][Tooltip("The game object to spawn the enemies inside of")]private Transform enemyContainer;
-
+    //~ inspector (private)
+    [SerializeField][Tooltip("THE game manager in the scene")]                                       private GameManager gameManager;
     [Header("Enemy prefabs")]
-    [SerializeField][Tooltip("Enemy prefabs to spawn randomly from")]private GameObject[] enemy;
-
+    [SerializeField][Tooltip("Enemy prefabs to spawn randomly from")]                                private GameObject[] enemy;
     [Header("Spawn area size")]
-    [SerializeField][Tooltip("the area (from - to + on each axis) to randomly spawn inside of")]private Vector3 spawnArea;
-    [SerializeField][Tooltip("the area (from - to + on each axis) to exclude from random spawning")]private Vector3 spawnAreaHole;
-
+    [SerializeField][Tooltip("the area (from - to + on each axis) to randomly spawn inside of")]     private Vector3 spawnArea;
+    [SerializeField][Tooltip("the area (from - to + on each axis) to exclude from random spawning")] private Vector3 spawnAreaHole;
+    //~ inspector (public)
     [Header("Timing")]
-    [SerializeField][Tooltip("Time in seconds to wait for next spawn")]private float spawnTimer;
+    [SerializeField][Min(0f)][Tooltip("Time in seconds to wait for next spawn")]                     public float spawnTimer;
+    //~ public
+    [HideInInspector] public bool spawnLoopRunning = true;
+    //~ public (getter)
+    public ref GameObject[] Enemy => ref this.enemy;
 
-    private bool spawnLoopRunning = true;
+    private void OnEnable(){ this.spawnLoopRunning = true; }
+    private void OnDisable(){ this.spawnLoopRunning = false; }
 
-    private void OnEnable(){ this.spawnLoopRunning = true;}
-    private void OnDisable(){ this.spawnLoopRunning = false;}
+    private void Start(){ StartCoroutine(this.SpawnLoop()); }
 
-    private void Start(){ StartCoroutine(this.SpawnTimer()); }
-
-    private IEnumerator SpawnTimer(){
+    /// <summary> Loop spawning until the flag <paramref name="spawnLoopRunning"/> is set to false. </summary>
+    private IEnumerator SpawnLoop(){
         while(this.spawnLoopRunning){
             yield return new WaitForSeconds(this.spawnTimer);
             this.SpawnRandomEnemy();
         }
     }
 
-    [ContextMenu(itemName:"SpawnRandomEnemy")]
+    /// <summary> Spawn a random enemy within set boundaries. </summary>
+    [ContextMenu("Spawn a random enemy")]
     private void SpawnRandomEnemy(){
         //~ get random position within spawnArea, but outside spawnAreaHole
         float spawnX = Random.value > 0.5f
@@ -43,9 +45,9 @@ public class EnemyManager : MonoBehaviour{
         //~ spawn enemy
         Enemy enemyScriptOfSpawnedEnemy = Object.Instantiate<GameObject>(
             enemyToSpawn,
-            this.gameManager.player.transform.position + new Vector3(spawnX, 0f, spawnZ),
+            this.gameManager.Player.transform.position + new Vector3(spawnX, 0f, spawnZ),
             enemyToSpawn.transform.rotation,
-            this.enemyContainer
+            this.transform
         ).GetComponent<Enemy>();
         //~ set gamemanager to the instance in scene
         enemyScriptOfSpawnedEnemy.gameManager = this.gameManager;
@@ -53,8 +55,8 @@ public class EnemyManager : MonoBehaviour{
 
     private void OnDrawGizmosSelected(){
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(gameManager.player.transform.position, spawnArea * 2f);
+        Gizmos.DrawWireCube(gameManager.Player.transform.position, spawnArea * 2f);
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(gameManager.player.transform.position, spawnAreaHole * 2f);
+        Gizmos.DrawWireCube(gameManager.Player.transform.position, spawnAreaHole * 2f);
     }
 }

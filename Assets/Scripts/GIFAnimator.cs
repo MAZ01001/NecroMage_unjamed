@@ -4,26 +4,14 @@ using UnityEngine;
 public class GIFAnimator : MonoBehaviour{
     [System.Serializable]
     public struct GIFAnimation{
-        /// <summary> The material for the gif animation </summary>
-        public Material gifMaterial;
-        /// <summary> The frames of the original gif file as 2d textures </summary>
-        public List<Texture2D> frames;
-        /// <summary> The amount of frames drawn per second </summary>
-        public float fps;
-
-        /// <summary> Creates a GIF animation structure </summary>
-        /// <param name="gifMaterial"> The material for the gif animation </param>
-        /// <param name="frames"> The frames of the original gif file as 2d textures </param>
-        /// <param name="fps"> The amount of frames drawn per second </param>
-        public GIFAnimation(ref Material gifMaterial, ref List<Texture2D> frames, float fps){
-            this.gifMaterial = gifMaterial;
-            this.frames = frames;
-            this.fps = fps;
-        }
+        //~ inspector (public)
+        [SerializeField][Tooltip("The material for the gif animation")]                 public Material gifMaterial;
+        [SerializeField][Tooltip("The frames of the original gif file as 2d textures")] public List<Texture2D> frames;
+        [SerializeField][Tooltip("The amount of frames drawn per second")]              public float fps;
     }
-
-    [SerializeField][Tooltip("GIF animations to animate in-game")]List<GIFAnimation> gifAnimations;
-
+    //~ inspector (private)
+    [SerializeField][Tooltip("GIF animations to animate in-game")] private List<GIFAnimation> gifAnimations;
+    //~ private
     private List<float> frameTimer;
 
     private void Start(){

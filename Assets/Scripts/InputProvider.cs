@@ -2,18 +2,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputProvider : MonoBehaviour{
-    public GameManager gameManager;
-    [Space]
-    public Vector2 move;
-    public Vector2 look;
-    public bool aimPressed;
-    public bool isMoving;
+    //~ inspector (private)
+    [SerializeField][Tooltip("THE game manager in the scene")] private GameManager gameManager;
+    //~ public
+    [HideInInspector] public Vector2 move;
+    [HideInInspector] public Vector2 look;
+    [HideInInspector] public bool aimPressed;
+    [HideInInspector] public bool isMoving;
+    //~ private
     private Animator anim;
 
-    private void Start()
-    {
-        anim = GetComponent<Animator>();
-    }
+    private void Start(){ this.anim = GetComponent<Animator>(); }
 
     private void OnEnable(){
         Cursor.lockState = CursorLockMode.Locked;
@@ -24,13 +23,16 @@ public class InputProvider : MonoBehaviour{
         Cursor.visible = true;
     }
 
-    void OnMove(InputValue value) { move = value.Get<Vector2>().normalized; if (move.magnitude > 0.001f) {anim.SetBool("isMoving", true);} else {anim.SetBool("isMoving", false);} }
-    void OnLook(InputValue value){ look = value.Get<Vector2>().normalized; }
-    void OnAim(InputValue value){ aimPressed = value.isPressed; }
-    void OnPause(InputValue value){
+    private void OnMove(InputValue value){
+        this.move = value.Get<Vector2>().normalized;
+        this.anim.SetBool("isMoving", this.move.sqrMagnitude > 0.001f);
+    }
+    private void OnLook(InputValue value){ this.look = value.Get<Vector2>().normalized; }
+    private void OnAim(InputValue value){ this.aimPressed = value.isPressed; }
+    private void OnPause(InputValue value){
         if(value.isPressed){
             if (Time.timeScale > 0.001f) this.gameManager.OnPause();
-            else this.gameManager.OnResume();
+            else this.gameManager.OnResumefromPause();
         }
     }
 }

@@ -1,13 +1,14 @@
 using UnityEngine;
 
 public class Projectile : MonoBehaviour{
-    [SerializeField][Tooltip("the child game object for fliping")]private GameObject visualChild;
-    [SerializeField][Tooltip("if this object is looking to the right or not")]private bool facingRight = true;
-
-    [HideInInspector]public AttackBehaviour attackBehaviourLink;
-    [HideInInspector]public Vector3 travelDirectionNormal;
-    [HideInInspector]public bool fromMinion = true;
-
+    //~ inspector (private)
+    [SerializeField][Tooltip("the child game object for fliping")]             private GameObject visualChild;
+    [SerializeField][Tooltip("if this object is looking to the right or not")] private bool facingRight = true;
+    //~ public
+    [HideInInspector] public AttackBehaviour attackBehaviourLink;
+    [HideInInspector] public Vector3 travelDirectionNormal;
+    [HideInInspector] public bool fromMinion = true;
+    //~ private
     private float startTime;
 
     private void Start(){

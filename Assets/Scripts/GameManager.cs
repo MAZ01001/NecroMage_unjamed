@@ -8,65 +8,54 @@ using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour{
-    [SerializeField][Tooltip("the player object")]public GameObject player;
-    [SerializeField][Tooltip("the audio mixer for changing volume")]public AudioMixer audioMixer;
-
+    //~ inspector (private)
+    [SerializeField][Tooltip("The player object")]                                    private GameObject player;
+    [SerializeField][Tooltip("The audio mixer for changing volume")]                  private AudioMixer audioMixer;
     [Header("UI")]
-    [SerializeField][Tooltip("the TMP dropbox to set screen resolution")]private TMP_Dropdown resolutionDropdownUI;
-    [SerializeField]private TMP_Text timerText;
-    [SerializeField][Tooltip("the pause menu ui game object")]private GameObject pauseMenuUI;
-    [SerializeField][Tooltip("the game over menu ui game object")]private GameObject gameOverMenuUI;
-    [SerializeField][Tooltip("the score TMP on the game over menu ui")]private TMP_Text highscoreTMPro;
-    [SerializeField][Tooltip("the upgrade menu game object")]public GameObject upgradeMenuUI;
-
+    [SerializeField][Tooltip("The TMP dropbox to set screen resolution")]             private TMP_Dropdown resolutionDropdownUI;
+    [SerializeField][Tooltip("The TMP text to display a timer")]                      private TMP_Text timerText;
+    [SerializeField][Tooltip("The pause menu ui game object")]                        private GameObject pauseMenuUI;
+    [SerializeField][Tooltip("The game over menu ui game object")]                    private GameObject gameOverMenuUI;
+    [SerializeField][Tooltip("The score TMP on the game over menu ui")]               private TMP_Text highscoreTMPro;
+    [SerializeField][Tooltip("The upgrade menu game object")]                         private GameObject upgradeMenuUI;
+    [SerializeField][Tooltip("The XP slider ui element")]                             private Slider experienceSlider;
     [Header("Game Logic")]
-    [SerializeField][Tooltip("starting time for countdown in seconds")]private int startTime = 0;
-    [SerializeField]private int level = 1;
-    [SerializeField]private int experience = 0;
-    [SerializeField]private Slider experienceSlider;
-    [SerializeField][Tooltip("empty that has only minions")]private Transform minionContainer;
-    [SerializeField][Tooltip("List of all minion prefabs")]List<GameObject> allMinionPrefabs;
-    [SerializeField][Tooltip("maximum number of clones for each minion")]int maxMinionClones;
-
-    public int NextLevelXP => this.level * 1000;
-    public int CurrentXP => this.experience;
-
+    [SerializeField][Min(0)][Tooltip("The starting time for countdown in seconds")]   private int startTime = 10;
+    [SerializeField][Tooltip("The minion container game object")]                     private Transform minionContainer;
+    [SerializeField][Tooltip("A list of all minion prefabs")]                         private List<GameObject> allMinionPrefabs;
+    [SerializeField][Min(0)][Tooltip("The maximum number of clones for each minion")] private int maxMinionClones;
+    [SerializeField][Tooltip("A list of all available/collected upgrades")]           private List<Upgrade> allUpgrades;
+    //~ private
+    private uint level = 1;
+    private ulong experience = 0;
     private Resolution[] screenResolutions;
-    private List<GameObject> minionsSpawned;
+    private List<List<GameObject>> minionsSpawned;
     private List<int> minionClonesSpawned;
-    private List<List<Upgrade>> minionUpgrades;
-    private List<HashSet<Upgrade>> upgradesCollected;
-    private List<UpgradeItem> upgradeItems;
+    private int upgradesCollectedCount = 0;
+    private int upgradesAppliedCount = 0;
+    private List<UpgradeItem> lastUpgradeItems;
     private int countdown = 0;
-    public TMP_Text[] upgradeText;
-    public Image[] upgradeImage;
+    private double playTime = 0d;
+    //~ public
+    [HideInInspector] public ulong enemiesDefeated = 0;
+    //~ public (getter)
+    public ulong NextLevelXP => this.level * 1000;
+    public ulong CurrentXP => this.experience;
+    public ref GameObject Player => ref this.player;
+    public ref AudioMixer AudioMixer => ref this.audioMixer;
 
     //~ reset time on start of game
-    private void Awake(){ Time.timeScale=1f; }
+    //~ why: timeScale is keeped across scenes so when exiting wile paused, time is paused when navigating back into the game !
+    private void Awake(){ Time.timeScale = 1f; }
 
     private void Start(){
-        //~ initialize lists (in order !)
-        this.minionsSpawned = new List<GameObject>();
-        this.minionClonesSpawned = new List<int>();
-        this.minionUpgrades = new List<List<Upgrade>>();
-        this.upgradesCollected = new List<HashSet<Upgrade>>();
-        for(int i = 0; i < this.allMinionPrefabs.Count; i++){
-            Minion minion = this.allMinionPrefabs[i].GetComponent<Minion>();
-            this.minionUpgrades.Add(new List<Upgrade>(minion.attackBehaviour.upgrades));
-            minion.attackBehaviour.upgrades.Clear();
-            this.upgradesCollected.Add(new HashSet<Upgrade>());
-            //~ only here because you start with all 4 minions already
-            this.minionsSpawned.Add(this.allMinionPrefabs[i]);
-            //~ 0 instead of -1 here because you start with all 4 minions already
-            this.minionClonesSpawned.Add(0);
-        }
         //~ add screen resolution options if dropdownUI is available
         if(this.resolutionDropdownUI != null){
             this.screenResolutions = Screen.resolutions;
             HashSet<string> options = new HashSet<string>();
             int currentResolutionIndex = 0;
             for(int i = 0; i < this.screenResolutions.Length; i++){
-                options.Add($"{this.screenResolutions[i].width}x{this.screenResolutions[i].height}");
+                options.Add($"{this.screenResolutions[i].width} x {this.screenResolutions[i].height}");
                 if(
                     this.screenResolutions[i].width == Screen.currentResolution.width
                     && this.screenResolutions[i].height == Screen.currentResolution.height
@@ -76,70 +65,29 @@ public class GameManager : MonoBehaviour{
             this.resolutionDropdownUI.AddOptions(options.ToList());
             this.resolutionDropdownUI.value = currentResolutionIndex;
             this.resolutionDropdownUI.RefreshShownValue();
-        }else StartCoroutine(this.Timer());
+        }
+        //~ do not do anything else in MainMenu scene
+        Scene scene = SceneManager.GetActiveScene();
+        if(
+            scene !=null
+            && scene.name == "MainMenu"
+        ) return;
+        //~ initialize lists (in order !)
+        this.minionsSpawned = new List<List<GameObject>>();
+        this.minionClonesSpawned = new List<int>();
+        for(int i = 0; i < this.allMinionPrefabs.Count; i++){
+            this.minionsSpawned.Add(new List<GameObject>());
+            //! line ↓↓ is only here because you start with all 4 minions already
+            this.minionsSpawned[i].Add(this.allMinionPrefabs[i]);
+            //! 0 instead of -1 here because you start with all 4 minions already
+            this.minionClonesSpawned.Add(0);
+        }
+        this.upgradesCollectedCount = this.allUpgrades.Count;
+        StartCoroutine(this.Timer());
+        this.playTime = Time.realtimeSinceStartupAsDouble;
     }
 
-    /// <summary> for spawning initial minion every other minion and new clones of existing minions </summary>
-    /// <param name="index"> the index of the minion/clone to spawn in <paramref name="allMinionPrefabs"/> </param>
-    public void SpawnMinion(int index){
-        if(index < 0 || index >= this.allMinionPrefabs.Count) return;
-        if(this.minionClonesSpawned[index] >= this.maxMinionClones) return;
-        GameObject minion = Object.Instantiate<GameObject>(this.allMinionPrefabs[index], this.minionContainer);
-        this.minionsSpawned[index] = minion;
-        this.minionClonesSpawned[index] += 1;
-        Minion minionScript = minion.GetComponent<Minion>();
-        foreach(Upgrade upgrade in this.upgradesCollected[index])minionScript.attackBehaviour.ApplyUpgrade(upgrade);
-    }
-    /// <summary>
-    ///     get n random upgrades or a minion spawn if that's still available, as UpgradeItem List
-    ///     <br/> new minion spawn is always [0] if available
-    ///     <br/> execution is probably a "little" slow
-    /// </summary>
-    /// <param name="amount"> the amount of random upgrades to get, can be less if not that many upgrades are available anymore </param>
-    /// <returns> a list of random (available) upgrade items </returns>
-    private List<UpgradeItem> GetRandomUpgradeList(int amount = 3){
-        List<UpgradeItem> upgradeList = new List<UpgradeItem>();
-        //~ minions (if still available)
-        if(this.minionsSpawned.Count < this.allMinionPrefabs.Count){
-            List<GameObject> remainingMinions = new List<GameObject>();
-            foreach(GameObject minion in this.allMinionPrefabs){
-                if(this.minionsSpawned.Contains<GameObject>(minion))continue;
-                remainingMinions.Add(minion);
-            }
-            upgradeList.Add(new UpgradeItem(remainingMinions[Random.Range(0, remainingMinions.Count)]));
-            remainingMinions.Clear();
-            amount--;
-        }
-        //~ upgrades (if still available)
-        List<List<Upgrade>> mu = new List<List<Upgrade>>();
-        List<int> mui = new List<int>();
-        List<int> left = new List<int>(this.minionsSpawned.Count);
-        HashSet<Upgrade> got = new HashSet<Upgrade>();
-        for(int i = 0; i < this.minionsSpawned.Count; i++){
-            if(this.minionUpgrades[i].Count > 0){
-                mui.Add(i);
-                mu.Add(this.minionUpgrades[i]);
-                left[i] = this.minionUpgrades[i].Count;
-            }
-        }
-        int count = mu.Count;
-        int randomIndex;
-        for(int i = 0; amount > 0 && count > 0; i++){
-            if(i >= mu.Count) i = 0;
-            if(left[i] <= 0){
-                count--;
-                continue;
-            }
-            do randomIndex = Random.Range(0, mu[i].Count);
-            while(got.Contains(mu[i][randomIndex]));
-            got.Add(mu[i][randomIndex]);
-            left[i]--;
-            amount--;
-            upgradeList.Add(new UpgradeItem(this.minionsSpawned[mui[i]],mu[i][randomIndex]));
-        }
-        return upgradeList;
-    }
-
+    /// <summary> Handles in-game timer (in 1 sec intervals) and triggers game over if it reaches 0. </summary>
     private IEnumerator Timer(){
         this.countdown = this.startTime;
         do{
@@ -149,116 +97,198 @@ public class GameManager : MonoBehaviour{
         }while(this.countdown > 0);
         this.OnGameOver();
     }
+    /// <summary> Updates the XP slider UI element. </summary>
+    private void UpdateExperienceSlider(){
+        this.experienceSlider.maxValue = this.NextLevelXP;
+        this.experienceSlider.value = this.experience;
+    }
+    /// <summary>
+    ///     Get <paramref name="amount"/> random upgrades or a minion spawn if that's still available, as <paramref name="UpgradeItem"/> List.
+    ///     <br/>New minion spawn is always the first element, if it is available.
+    ///     <br/>Execution is probably a "little" slow.
+    /// </summary>
+    /// <param name="amount"> The amount of random upgrades to get, can be less if not that many upgrades are available anymore. </param>
+    /// <returns> A list of random (available) upgrade items. </returns>
+    private List<UpgradeItem> GetRandomUpgradeList(int amount = 3){
+        List<UpgradeItem> upgradeList = new List<UpgradeItem>();
+        //~ minions (if still available)
+        if(this.minionsSpawned.Count < this.allMinionPrefabs.Count){
+            List<GameObject> remainingMinions = new List<GameObject>();
+            // foreach(GameObject minion in this.allMinionPrefabs){
+            for(int i = 0; i < this.allMinionPrefabs.Count; i++){
+                if(this.minionsSpawned[i].Count > 0) continue;
+                remainingMinions.Add(this.allMinionPrefabs[i]);
+            }
+            upgradeList.Add(new UpgradeItem(remainingMinions[Random.Range(0, remainingMinions.Count)]));
+            remainingMinions.Clear();
+            amount--;
+        }
+        //~ upgrades (if still available)
+        HashSet<Upgrade> got = new HashSet<Upgrade>();
+        int count = this.allUpgrades.Count;
+        int randomIndex;
+        for(int i = 0; amount > 0 && count > 0; i++){
+            do randomIndex = Random.Range(0, this.allUpgrades.Count);
+            while(got.Contains(this.allUpgrades[randomIndex]));
+            count--;
+            amount--;
+            upgradeList.Add(new UpgradeItem(this.allUpgrades[randomIndex]));
+            got.Add(this.allUpgrades[randomIndex]);
+        }
+        return upgradeList;
+    }
 
     //~ menu trigger
+    /// <summary> Pauses the game, unlocks and shows cursor, and enables the pause menu. </summary>
     public void OnPause(){
-        Time.timeScale=0f;
-        this.pauseMenuUI.SetActive(true);
-        Cursor.visible=true;
-        Cursor.lockState=CursorLockMode.None;
-    }
-    public void OnResume(){
-        Cursor.lockState=CursorLockMode.Locked;
-        Cursor.visible=false;
-        this.pauseMenuUI.SetActive(false);
-        Time.timeScale=1f;
-    }
-    public void OnGameOver(){
         Time.timeScale = 0f;
-        float points = 0;
-
-        points += this.level * 420f;
-        points += (this.NextLevelXP / this.experience) * 10;
-        points += this.player.GetComponent<PlayerManager>().GetHP * 100;
-        points -= (this.countdown / this.startTime) * 10;
-
-        this.highscoreTMPro.text = $"Your score\n{(int)points}";
-        this.gameOverMenuUI.SetActive(true);
-        Cursor.visible=true;
-        Cursor.lockState=CursorLockMode.None;
+        this.pauseMenuUI.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
-
+    /// <summary> Resumes the game, locks and hides cursor, and disables the pause menu. </summary>
+    public void OnResumefromPause(){
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        this.pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    /// <summary> Pauses the game, unlocks and shows cursor, and enables the level up menu. </summary>
+    [ContextMenu("Trigger level up")]
     public void OnLevelUp(){
         Time.timeScale = 0f;
         this.experience = 0;
         this.level++;
         this.UpdateExperienceSlider();
-        foreach (TMP_Text t in upgradeText)
-        {
-            t.text = null;
-        }
-        foreach (Image t in upgradeImage)
-        {
-            t.sprite = null;
-        }
-
-
+        //~ reset update panels
         this.upgradeMenuUI.SetActive(true);
-        this.upgradeItems = this.GetRandomUpgradeList(3);
-        for (int i = 0; i < upgradeItems.Count; i++)
-        {
-            upgradeText[i].text = upgradeItems[i].GetText;
-            upgradeImage[i].sprite = upgradeItems[i].GetIcon.sprite;
+        //~ this may take some time
+        this.lastUpgradeItems = this.GetRandomUpgradeList(3);
+        //~ fill update panels
+        /* TODO Level up UI elements
+            remake this with a prefab UI element
+            and auto group/align UI canvas script
+                Unity UI Tutorial - Layout Groups
+                https://youtu.be/RWcwEAILOCA?t=80
+        */
+        List<TMP_Text> upgradeText = new List<TMP_Text>();
+        List<Image> upgradeImage = new List<Image>();
+        for(int i = 0; i < this.lastUpgradeItems.Count; i++){
+            upgradeText[i].text = this.lastUpgradeItems[i].GetText;
+            upgradeImage[i].sprite = this.lastUpgradeItems[i].GetIcon.sprite;
         }
-        
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-    public void CloseLevelUpMenu(){
+    /// <summary> Resumes the game, locks and hides cursor, and disables the level up menu. </summary>
+    public void OnResumeFromLevelUp(){
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         this.upgradeMenuUI.SetActive(false);
         Time.timeScale = 1f;
     }
-
-    private void UpdateExperienceSlider(){
-        this.experienceSlider.maxValue = this.NextLevelXP;
-        this.experienceSlider.value = this.experience;
+    /// <summary> Pauses the game, unlocks and shows cursor, and enables the game over menu. </summary>
+    [ContextMenu("Trigger game over")]
+    public void OnGameOver(){
+        this.playTime = Time.realtimeSinceStartupAsDouble - this.playTime;
+        Time.timeScale = 0f;
+        decimal points = 0m;
+        //~ calculate score
+        points += this.enemiesDefeated * 2m;
+        points += this.level * 420m;
+        points += (this.NextLevelXP / this.experience) * 8m;
+        points += this.player.GetComponent<PlayerManager>().GetHP * 69m;
+        points += this.upgradesCollectedCount * 16m;
+        points += this.upgradesAppliedCount * 32m;
+        points -= (this.countdown / this.startTime) * 8m;
+        if(points < 0m) points = 0m;
+        //~ format and display score
+        this.highscoreTMPro.text = $"Your score\n{points.ToString("N0")}";
+        // TODO show unscaled time ~ for speedruns
+        Debug.Log($"time survived: {this.playTime} seconds");
+        this.gameOverMenuUI.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
-    public void AddExperience(int amount){
+    //~ other game events
+    /// <summary> Gives XP to the player. </summary>
+    /// <param name="amount"> The amount of XP given. </param>
+    public void AddExperience(uint amount){
         this.experience += amount;
-        if (experience >= NextLevelXP)
-        {
-            OnLevelUp();
-        }
+        if(experience >= NextLevelXP) this.OnLevelUp();
         this.UpdateExperienceSlider();
     }
-    /// <summary>
-    ///     applyes upgrade after calling <paramref name="GetRandomUpgradeList"/> to initiate button list
-    ///     <br/> this handles the button press, needs the correct index of the list and applies that upgrade
-    /// </summary>
-    /// <param name="pressedButtonID"> the index in <paramref name="upgradeItems"/> of the selected upgrade </param>
-    public void ApplyUpgrade(int pressedButtonID){
-        UpgradeItem upgradeItem = this.upgradeItems[pressedButtonID];
-        if(upgradeItem.isUpgrade){
-            int minionIndex = this.allMinionPrefabs.IndexOf(upgradeItem.GetMinion);
-            upgradeItem.GetMinion.GetComponent<Minion>().attackBehaviour.ApplyUpgrade(upgradeItem.GetUpgrade);
-            this.upgradesCollected[minionIndex].Add(upgradeItem.GetUpgrade);
-            this.minionUpgrades[minionIndex].Remove(upgradeItem.GetUpgrade);
-        }else this.SpawnMinion(this.allMinionPrefabs.IndexOf(upgradeItem.GetMinion));
+    /// <summary> For spawning the initial minion, every other minion, and clones of existing minions. </summary>
+    /// <param name="index"> The index of the minion/clone to spawn, in <paramref name="allMinionPrefabs"/>. </param>
+    public void SpawnMinion(int index){
+        if(
+            index < 0
+            || index >= this.allMinionPrefabs.Count
+        ) return;
+        if(this.minionClonesSpawned[index] >= this.maxMinionClones) return;
+        GameObject minion = Object.Instantiate<GameObject>(
+            this.allMinionPrefabs[index],
+            this.player.transform.position
+            + Vector3.forward,
+            Quaternion.identity,
+            this.minionContainer
+        );
+        this.minionsSpawned[index].Add(minion);
+        this.minionClonesSpawned[index] += 1;
+        minion.GetComponent<Minion>().AttackBehaviour.CopyValuesFrom(this.minionsSpawned[index][0].GetComponent<Minion>().AttackBehaviour);
     }
-    // TODO public void CollectUpgrade(GameObject minionPrefab, Upgrade upgrade){/* TODO add upgrade to list if minionPrefab is in minion list ~ add minion ?! */}
+    /// <summary>
+    ///     Applyes upgrade after calling <paramref name="GetRandomUpgradeList"/> to initiate button list.
+    ///     <br/>This handles the button press, needs the correct index of the list and applies that upgrade.
+    /// </summary>
+    /// <param name="pressedButtonID"> The index in <paramref name="lastUpgradeItems"/> of the selected upgrade. </param>
+    public void ApplyUpgrade(int pressedButtonID){
+        UpgradeItem selectedUpgradeItem = this.lastUpgradeItems[pressedButtonID];
+        if(selectedUpgradeItem.GetIsUpgrade){
+            int minionIndex = this.allMinionPrefabs.IndexOf(selectedUpgradeItem.GetUpgrade.minionPrefab);
+            foreach(GameObject minionSpawned in this.minionsSpawned[minionIndex])minionSpawned.GetComponent<Minion>().AttackBehaviour.ApplyUpgrade(selectedUpgradeItem.GetUpgrade);
+            this.upgradesAppliedCount++;
+            this.allUpgrades.Remove(selectedUpgradeItem.GetUpgrade);
+        }else this.SpawnMinion(this.allMinionPrefabs.IndexOf(selectedUpgradeItem.GetMinionPrefab));
+    }
+    /// <summary>
+    ///     Adds the given <paramref name="upgrade"/> to the collection.
+    ///     <br/>This does not apply the update, just makes it available for future level ups.
+    /// </summary>
+    /// <param name="upgrade"> the upgrade collected. </param>
+    public void CollectUpgrade(Upgrade upgrade){
+        throw new System.NotImplementedException("[GameManager : CollectUpgrade] this function is not implemented (yet).");
+        // TODO add upgrade to list if minionPrefab is in minion list ~ add minion ?!
+        // upgrade.minionPrefab (upgrade is for this minion)
+        //! if in this.allMinionPrefabs (get index)
+        //! add to this.minionUpgrades (use index)
+        // this.upgradesCollectedCount++;
+    }
 
     //~ sceneloader
-    /// <summary> Load the next scene of the build menu list </summary>
-    public void PlayGame(){ SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); }
-    /// <summary> load the "MainMenu" scene </summary>
+    /// <summary> Load the next scene of the build menu list. </summary>
+    public void NextScene(){ SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); }
+    /// <summary> Load the "MainMenu" scene. </summary>
     public void LoadMainMenu(){ SceneManager.LoadScene("MainMenu"); }
-    /// <summary> Exits the game </summary>
+    /// <summary> Exits the game. </summary>
     public void QuitGame(){ Application.Quit(); }
 
     //~ audio/video settings
-    /// <summary> change the volume of the <paramref name="audioMixer"/> </summary>
-    /// <param name="volume"> the new volume level </param>
+    /// <summary> Change the volume of the <paramref name="audioMixer"/>. </summary>
+    /// <param name="volume"> The new volume level. </param>
     public void SetVolume(float volume){ this.audioMixer.SetFloat("volume", volume); }
-    /// <summary> Set the game to fullscreen </summary>
-    /// <param name="isFullscreen"> set the fullscreen state based on this value </param>
-    public void SetFullscreen(bool isFullscreen){ Screen.fullScreen = isFullscreen; }
-    /// <summary> Changes resolution </summary>
-    /// <param name="resolutionIndex"> changes resolution based on this value </param>
+    /// <summary> Set the game to full screen or windowed mode. </summary>
+    /// <param name="isFullScreen"> If set to true, sets the <paramref name="fullScreenMode"/> to <paramref name="FullScreenWindow"/> else to <paramref name="Windowed"/>. </param>
+    public void SetFullScreen(bool isFullScreen = true){
+        Screen.fullScreenMode = isFullScreen
+            ? FullScreenMode.FullScreenWindow
+            : FullScreenMode.Windowed;
+    }
+    /// <summary> Changes display resolution. </summary>
+    /// <param name="resolutionIndex"> The index of the desired resolution in <paramref name="screenResolutions"/>. </param>
     public void SetResolution(int resolutionIndex){
         Resolution resolution = this.screenResolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
     }
 }

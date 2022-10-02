@@ -1,8 +1,9 @@
 using UnityEngine;
 
 public class ChunkLoader : MonoBehaviour{
-    [SerializeField][Tooltip("the distance at witch to load/unload terrain chuncks")]private float loadDistance = 200f;
-    [SerializeField][Tooltip("the target from witch the load distance is measured")]private Transform target;
+    //~ inspector (private)
+    [SerializeField][Tooltip("the target from witch the load distance is measured")]            private Transform target;
+    [SerializeField][Min(10f)][Tooltip("the distance at witch to load/unload terrain chuncks")] private float loadDistance = 200f;
 
     private void LateUpdate(){
         for(int i = 0; i < this.transform.childCount; i++){
