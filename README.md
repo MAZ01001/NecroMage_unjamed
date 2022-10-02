@@ -1,9 +1,9 @@
 # Necro Mage
 
-Unjamed version of a one-week [game jam](https://itch.io/jam/gamedevweek-2022-2/entries) [game](https://maz00101.itch.io/necro-mage).
+Unjamed version of a [game](https://maz00101.itch.io/necro-mage) made in a one-week [game jam](https://itch.io/jam/gamedevweek-2022-2/entries):
 
 <iframe frameborder="0" src="https://itch.io/embed/1705317?bg_color=081a25&amp;fg_color=edd8a0&amp;link_color=7aba97&amp;border_color=334934" width="552" height="167">
-    <a href="https://maz00101.itch.io/necro-mage">Necro Mage by MAZ, Stiftoad, Hadesdoc</a>
+    <a href="https://maz00101.itch.io/necro-mage">[itch.io] Necro Mage by MAZ, Stiftoad, Hadesdoc</a>
 </iframe>
 
 ## Description
@@ -26,6 +26,17 @@ Unjamed version of a one-week [game jam](https://itch.io/jam/gamedevweek-2022-2/
 
 | Name (and nickname) | Profile link | Occupation |
 | --- | --- | --- |
+| Leon "Leon K" K | [Artstation/leonk](https://www.artstation.com/leonk) | 3D Art / Level Art |
+| Matthias "MAZ" Angst | [<img src="https://maz01001.github.io/img/icon.svg" height="18" style="height:1.3rem;vertical-align:text-bottom;"/> MAZ01001.GitHub.io](https://maz01001.github.io/)<br/>[YouTube/MAZ](https://www.youtube.com/channel/UCQHeetVlsN7Poqnovh5_eKA)<br/>[Steam/MAZ01001](https://steamcommunity.com/id/MAZ01001) | Programming |
+| André "Stiftoad" Linnepe | [Instagram@stiftoad](https://www.instagram.com/stiftoad/)<br>[Youtube/Stiftoad](https://www.youtube.com/channel/UC_r9MmRsCjODSs8aRjsXhRw) | Sound, Animation/Rigging |
+| Anh-Thu Nguyen | [Twitch/alphawolfin](https://www.twitch.tv/alphawolfin) | Concept art and illustration |
+| Andrej Gorin | [Artstation/andrejgorin](https://www.artstation.com/andrejgorin) | Environment Art/3D |
+
+<details closed>
+<summary>Authors of the original</summary>
+
+| Name (and nickname) | Profile link | Occupation |
+| --- | --- | --- |
 | Tobias "Andom" Schmidt | [Twitter@Andom127](https://twitter.com/Andom127) | Programming |
 | Leon "Leon K" K | [Artstation/leonk](https://www.artstation.com/leonk) | 3D Art / Level Art |
 | Niklas "Ciktore" Osterode | [Twitter@CaptainCiktore](https://twitter.com/CaptainCiktore) | YES |
@@ -37,6 +48,8 @@ Unjamed version of a one-week [game jam](https://itch.io/jam/gamedevweek-2022-2/
 | Nils "N.W." Weibel | | 3D Art |
 | Andrej Gorin | [Artstation/andrejgorin](https://www.artstation.com/andrejgorin) | Environment Art/3D |
 | Samuel Eyasu | | 3D Art |
+
+</details>
 
 ## License
 
