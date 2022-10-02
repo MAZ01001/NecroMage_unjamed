@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3840509736836301653}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 0.428, z: 0}
+  m_LocalPosition: {x: 0, y: 0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -147,16 +147,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf09296fc90acb40948cd4d7129ec1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   visualChild: {fileID: 3840509736836301653}
   facingRight: 1
   health: 1
+  attackBehaviour: {fileID: 11400000, guid: 8f6c9dafb1dcf48489276e7f4abc72ac, type: 2}
+  experienceReward: 400
   dropObject: {fileID: 0}
   dropHP: 0
   dropXP: 0
-  attackBehaviour: {fileID: 11400000, guid: 8f6c9dafb1dcf48489276e7f4abc72ac, type: 2}
-  experianceReward: 400
-  enemiesDefeated: 0
+  gameManager: {fileID: 0}
 --- !u!195 &8122185164032480710
 NavMeshAgent:
   m_ObjectHideFlags: 0

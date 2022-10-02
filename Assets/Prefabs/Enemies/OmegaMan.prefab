@@ -769,18 +769,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf09296fc90acb40948cd4d7129ec1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1834243277536512513, guid: c58d2b1e2a322d84aa3ee274ef403937,
-    type: 3}
   visualChild: {fileID: 3513644952704593473}
-  facingRight: 1
+  facingRight: 0
   health: 4
+  attackBehaviour: {fileID: 11400000, guid: 8f6c9dafb1dcf48489276e7f4abc72ac, type: 2}
+  experienceReward: 400
   dropObject: {fileID: 0}
   dropHP: 0
   dropXP: 0
-  attackBehaviour: {fileID: 11400000, guid: 8f6c9dafb1dcf48489276e7f4abc72ac, type: 2}
-  closestDistance: 0.8
-  experianceReward: 400
-  enemiesDefeated: 0
+  gameManager: {fileID: 1834243277536512513, guid: c58d2b1e2a322d84aa3ee274ef403937,
+    type: 3}
 --- !u!195 &8122185164032480710
 NavMeshAgent:
   m_ObjectHideFlags: 0

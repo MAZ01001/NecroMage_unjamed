@@ -319,13 +319,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  facingRight: 0
   visualChild: {fileID: 8025837941498911417}
+  facingRight: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   playerFollowRange: 4
-  closestDistance: 0.8
   attackBehaviour: {fileID: 11400000, guid: 561f736436bbdd948aaf48553d2afd10, type: 2}
   displayName: 
   displayDescription: 
@@ -764,7 +763,7 @@ Transform:
   m_GameObject: {fileID: 8025837941498911417}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: -1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5444769330313841577}
@@ -834,7 +833,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3650090750276049758}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.04, y: -0.63, z: 0}
 --- !u!137 &7591431850338625865
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
