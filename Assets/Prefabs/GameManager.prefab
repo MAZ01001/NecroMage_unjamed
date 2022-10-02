@@ -53,10 +53,8 @@ MonoBehaviour:
   gameOverMenuUI: {fileID: 0}
   highscoreTMPro: {fileID: 0}
   upgradeMenuUI: {fileID: 0}
-  startTime: 600
-  level: 1
-  experience: 0
   experienceSlider: {fileID: 0}
+  startTime: 600
   minionContainer: {fileID: 0}
   allMinionPrefabs:
   - {fileID: 3650090750276049826, guid: 681c388a9fbd0444d90b4182ccc9e043, type: 3}
@@ -64,10 +62,7 @@ MonoBehaviour:
   - {fileID: 3650090750276049826, guid: fd607e8a55fa16049af419d8fa160494, type: 3}
   - {fileID: 3650090750276049826, guid: 9a28f8bfc10266348b7d75f2829c3f76, type: 3}
   maxMinionClones: 3
-  upgradeText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  allUpgrades: []
 --- !u!114 &7873364947403226336
 MonoBehaviour:
   m_ObjectHideFlags: 0
