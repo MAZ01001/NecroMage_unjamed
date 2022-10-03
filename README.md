@@ -2,9 +2,8 @@
 
 Unjamed version of a [game](https://maz00101.itch.io/necro-mage) made in a one-week [game jam](https://itch.io/jam/gamedevweek-2022-2/entries):
 
-<iframe frameborder="0" src="https://itch.io/embed/1705317?bg_color=081a25&amp;fg_color=edd8a0&amp;link_color=7aba97&amp;border_color=334934" width="552" height="167">
-    <a href="https://maz00101.itch.io/necro-mage">[itch.io] Necro Mage by MAZ, Stiftoad, Hadesdoc</a>
-</iframe>
+[![Necro Mage Cover Image](https://img.itch.zone/aW1nLzEwMDQ4Njk5LnBuZw==/360x286%23c/z%2FmIBN.png)](https://maz00101.itch.io/necro-mage)\
+A small Open World Game that was made in one week.
 
 ## Description
 
