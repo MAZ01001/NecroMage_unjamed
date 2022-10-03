@@ -1,8 +1,8 @@
 # Necro Mage
 
-Unjamed version of a [game](https://maz00101.itch.io/necro-mage) made in a one-week [game jam](https://itch.io/jam/gamedevweek-2022-2/entries):
+Unjamed version of a [game](https://maz00101.itch.io/necro-mage "View Necro Mage on itch.io") made in a one-week [game jam](https://itch.io/jam/gamedevweek-2022-2/entries "View all game jam entries on itch.io"):
 
-[![Necro Mage Cover Image](https://img.itch.zone/aW1nLzEwMDQ4Njk5LnBuZw==/360x286%23c/z%2FmIBN.png)](https://maz00101.itch.io/necro-mage)\
+[![Necro Mage Cover Image](https://img.itch.zone/aW1nLzEwMDQ4Njk5LnBuZw==/360x286%23c/z%2FmIBN.png)](https://maz00101.itch.io/necro-mage "View Necro Mage on itch.io")\
 A small Open World Game that was made in one week.
 
 ## Description
