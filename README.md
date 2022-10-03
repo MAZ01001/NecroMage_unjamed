@@ -50,6 +50,7 @@ A small Open World Game that was made in one week.
 
 </details>
 
+<!--
 ## License
 
 Same license as the original: [Attribution-NonCommercial-ShareAlike 4.0 Creative Commons license](https://creativecommons.org/licenses/by-nc-sa/4.0/)
@@ -59,3 +60,4 @@ in short:
 + free to share/adapt
 + attribution, non-commercial, share-alike, and no additional restrictions
 + no warranties are given
+-->
