@@ -30,6 +30,7 @@ A small Open World Game that was made in one week.
 | André "Stiftoad" Linnepe | [Instagram@stiftoad](https://www.instagram.com/stiftoad/)<br>[Youtube/Stiftoad](https://www.youtube.com/channel/UC_r9MmRsCjODSs8aRjsXhRw) | Sound, Animation/Rigging |
 | Anh-Thu Nguyen | [Twitch/alphawolfin](https://www.twitch.tv/alphawolfin) | Concept art and illustration |
 | Andrej Gorin | [Artstation/andrejgorin](https://www.artstation.com/andrejgorin) | Environment Art/3D |
+| Niklas "Ciktore" Osterode | [Twitter@CaptainCiktore](https://twitter.com/CaptainCiktore) | YES |
 
 <details closed>
 <summary>Authors of the original</summary>
@@ -49,15 +50,3 @@ A small Open World Game that was made in one week.
 | Samuel Eyasu | | 3D Art |
 
 </details>
-
-<!--
-## License
-
-Same license as the original: [Attribution-NonCommercial-ShareAlike 4.0 Creative Commons license](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-
-in short:
-
-+ free to share/adapt
-+ attribution, non-commercial, share-alike, and no additional restrictions
-+ no warranties are given
--->
