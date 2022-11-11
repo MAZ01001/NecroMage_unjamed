@@ -15,7 +15,7 @@ public class GIFAnimator : MonoBehaviour{
     private List<float> frameTimer;
 
     private void Start(){
-        this.frameTimer = new List<float>();
+        this.frameTimer = new List<float>(this.gifAnimations.Count);
         for(int i = 0; i < this.gifAnimations.Count; i++) this.frameTimer.Add(0f);
     }
 
