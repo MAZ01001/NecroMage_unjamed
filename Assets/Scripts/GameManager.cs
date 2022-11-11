@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour{
         //~ add screen resolution options if dropdownUI is available
         if(this.resolutionDropdownUI != null){
             this.screenResolutions = Screen.resolutions;
-            HashSet<string> options = new HashSet<string>();
+            HashSet<string> options = new HashSet<string>(this.screenResolutions.Length);
             int currentResolutionIndex = 0;
             for(int i = 0; i < this.screenResolutions.Length; i++){
                 options.Add($"{this.screenResolutions[i].width} x {this.screenResolutions[i].height}");
@@ -74,9 +74,9 @@ public class GameManager : MonoBehaviour{
         ) return;
         //~ initialize lists (in order !)
         this.minionsSpawned = new List<List<GameObject>>();
-        this.minionClonesSpawned = new List<int>();
+        this.minionClonesSpawned = new List<int>(this.allMinionPrefabs.Count);
         for(int i = 0; i < this.allMinionPrefabs.Count; i++){
-            this.minionsSpawned.Add(new List<GameObject>());
+            this.minionsSpawned.Add(new List<GameObject>(this.maxMinionClones));
             //! line ↓↓ is only here because you start with all 4 minions already
             this.minionsSpawned[i].Add(this.allMinionPrefabs[i]);
             //! 0 instead of -1 here because you start with all 4 minions already
@@ -110,10 +110,10 @@ public class GameManager : MonoBehaviour{
     /// <param name="amount"> The amount of random upgrades to get, can be less if not that many upgrades are available anymore. </param>
     /// <returns> A list of random (available) upgrade items. </returns>
     private List<UpgradeItem> GetRandomUpgradeList(int amount = 3){
-        List<UpgradeItem> upgradeList = new List<UpgradeItem>();
+        List<UpgradeItem> upgradeList = new List<UpgradeItem>(this.allUpgrades.Count);
         //~ minions (if still available)
         if(this.minionsSpawned.Count < this.allMinionPrefabs.Count){
-            List<GameObject> remainingMinions = new List<GameObject>();
+            List<GameObject> remainingMinions = new List<GameObject>(this.allMinionPrefabs.Count);
             // foreach(GameObject minion in this.allMinionPrefabs){
             for(int i = 0; i < this.allMinionPrefabs.Count; i++){
                 if(this.minionsSpawned[i].Count > 0) continue;
@@ -124,16 +124,16 @@ public class GameManager : MonoBehaviour{
             amount--;
         }
         //~ upgrades (if still available)
-        HashSet<Upgrade> got = new HashSet<Upgrade>();
         int count = this.allUpgrades.Count;
         int randomIndex;
+        HashSet<int> got = new HashSet<int>(count);
         for(int i = 0; amount > 0 && count > 0; i++){
             do randomIndex = Random.Range(0, this.allUpgrades.Count);
-            while(got.Contains(this.allUpgrades[randomIndex]));
+            while(got.Contains(randomIndex));
             count--;
             amount--;
             upgradeList.Add(new UpgradeItem(this.allUpgrades[randomIndex]));
-            got.Add(this.allUpgrades[randomIndex]);
+            got.Add(randomIndex);
         }
         return upgradeList;
     }
@@ -171,8 +171,8 @@ public class GameManager : MonoBehaviour{
                 Unity UI Tutorial - Layout Groups
                 https://youtu.be/RWcwEAILOCA?t=80
         */
-        List<TMP_Text> upgradeText = new List<TMP_Text>();
-        List<Image> upgradeImage = new List<Image>();
+        List<TMP_Text> upgradeText = new List<TMP_Text>(this.lastUpgradeItems.Count);
+        List<Image> upgradeImage = new List<Image>(this.lastUpgradeItems.Count);
         for(int i = 0; i < this.lastUpgradeItems.Count; i++){
             upgradeText[i].text = this.lastUpgradeItems[i].GetText;
             upgradeImage[i].sprite = this.lastUpgradeItems[i].GetIcon.sprite;
