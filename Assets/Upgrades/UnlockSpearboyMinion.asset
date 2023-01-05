@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a579f596ad5bd4bb5adcc050c6e696, type: 3}
+  m_Name: UnlockSpearboyMinion
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 0}
+  LevelRequirement: 1
+  UpgradeName: Spearboy joins the battle
+  UpgradeDescription: 'Spearboy will follow and fight for you
+
+    it does long range
+    attacks'
+  PlayerHP: 0
+  PlayerXP: 0
+  IsMinionUnlock: 1
+  MinionPrefabs:
+  - {fileID: 3650090750276049826, guid: fd607e8a55fa16049af419d8fa160494, type: 3}
+  Damage: 0
+  TimeBetweenAttacks: 0
+  AreaOfEffectActive: 0
+  AreaOfEffectRange: 0
+  AreaOfEffectDamage: 0
+  Projectile: {fileID: 0}
+  ProjectileOffset: {x: 0, y: 0, z: 0}
+  ProjectileMaxTimeAlive: 0
+  ProjectileSpeed: 0
+  WalkingSpeed: 0
+  AttackRange: 0
+  FollowRange: 0
