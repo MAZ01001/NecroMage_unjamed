@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour{
     [SerializeField][Tooltip("if this object is looking to the right or not")]        private bool facingRight = true;
     [Header("Health")]
     [SerializeField][Min(1)][Tooltip("starting health of the player")]                private int health = 3;
-    [SerializeField][Min(0)][Tooltip("amount of invincibility frames")]               private int invinciblityFrames = 100;
+    [SerializeField][Min(0f)][Tooltip("time of invincibility in seconds")]            private float invinciblityTime = 0.1f;
     [SerializeField][Tooltip("Diegetic Health Light Left")]                           private Light lightL;
     [SerializeField][Tooltip("Diegetic Health Light Right")]                          private Light lightR;
     //~ inspector (public)
@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour{
     private InputProvider inputProvider;
     private Rigidbody rb;
     private Vector3 smoothVelocity;
-    private int invincFrames;
+    private float invincFrames;
     //~ public (getter)
     public int GetHP => this.health;
 
@@ -29,8 +29,7 @@ public class PlayerManager : MonoBehaviour{
     }
 
     private void FixedUpdate(){
-        if(this.invincFrames > 0) this.invincFrames--;
-        // BUG player movement is glitchy ~ lags every now and then ~
+        if(this.invincFrames > 0f) this.invincFrames -= Time.fixedTime;
         //~ move
         this.rb.velocity = Vector3.SmoothDamp(
             this.rb.velocity,
@@ -60,8 +59,8 @@ public class PlayerManager : MonoBehaviour{
     /// <summary> damages the player and initiate game over if dead </summary>
     /// <param name="damage"> amount of damage </param>
     public void Damage(int damage){
-        if(this.invincFrames > 0) return;
-        this.invincFrames = this.invinciblityFrames;
+        if(this.invincFrames > 0f) return;
+        this.invincFrames = this.invinciblityTime;
         this.health -= damage;
         Debug.Log("[Player] Ouch!");
         Color color;
