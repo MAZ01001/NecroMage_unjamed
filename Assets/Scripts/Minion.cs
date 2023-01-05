@@ -14,8 +14,6 @@ public class Minion : MonoBehaviour{
     [SerializeField][Tooltip("at this range, or further outwards, follows the player (also will not attack outside this range)")] private float playerFollowRange = 4f;
     [Header("Personality")]
     [SerializeField][Tooltip("the attack behaviour instance for this minion")]                                                    private AttackBehaviour attackBehaviour;
-    [SerializeField][Tooltip("the name of this minion")]                                                                          private string displayName = "";
-    [SerializeField][Multiline][Tooltip("the description of this minion")]                                                        private string displayDescription = "";
     //~ private
     private NavMeshAgent agent;
     private bool doneAttackDelay = true;
@@ -26,8 +24,23 @@ public class Minion : MonoBehaviour{
     private bool lockOnEnemy = false;
     //~ public (getter)
     public ref AttackBehaviour AttackBehaviour => ref this.attackBehaviour;
-    public string DisplayName => this.displayName;
-    public string DisplayDescription => this.displayDescription;
+
+    /// <summary> Apply the given upgrade </summary>
+    /// <param name="upgrade"> The upgrade to apply </param>
+    public void ApplyUpgrade(Upgrade upgrade){
+        this.attackBehaviour.ApplyUpgrade(upgrade);
+        //~ re-set the agent values (may have changed)
+        this.agent.speed = this.attackBehaviour.walkingSpeed;
+        this.agent.stoppingDistance = this.attackBehaviour.attackRange - 0.3f;
+    }
+    /// <summary> Copy attack behaviour (upgrades) from the given minion </summary>
+    /// <param name="minion"> The minion to copy values from </param>
+    public void CopyUpgradesFrom(Minion minion){
+        this.attackBehaviour.CopyValuesFrom(minion.attackBehaviour);
+        //~ re-set the agent values (may have changed)
+        this.agent.speed = this.attackBehaviour.walkingSpeed;
+        this.agent.stoppingDistance = this.attackBehaviour.attackRange - 0.3f;
+    }
 
     private void Start(){
         this.agent = GetComponent<NavMeshAgent>();
