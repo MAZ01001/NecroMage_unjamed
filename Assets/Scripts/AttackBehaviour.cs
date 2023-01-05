@@ -24,30 +24,25 @@ public class AttackBehaviour : ScriptableObject{
     /// <summary>
     ///     Adds the values from the given <paramref name="upgrade"/> to the existing values of this attack behaviour
     ///     <br/>but <paramref name="projectile"/> and <paramref name="projectileOffset"/> will be overitten
-    ///     <br/>also re-sets the navmeshagent values, that might have changed (taken from the <paramref name="minionPrefab"/> from the given <paramref name="upgrade"/>).
+    ///     <br/>does NOT re-set the navmeshagent values.
     /// </summary>
     /// <param name="upgrade"> the upgrade to get the values from </param>
     public void ApplyUpgrade(Upgrade upgrade){
-        this.damage += upgrade.damage;
-        this.timeBetweenAttacks += upgrade.timeBetweenAttacks;
+        this.damage += upgrade.Damage;
+        this.timeBetweenAttacks += upgrade.TimeBetweenAttacks;
 
-        this.areaOfEffectActive = upgrade.areaOfEffectActive;
-        this.areaOfEffectRange += upgrade.areaOfEffectRange;
-        this.areaOfEffectDamage += upgrade.areaOfEffectDamage;
+        this.areaOfEffectActive = upgrade.AreaOfEffectActive;
+        this.areaOfEffectRange += upgrade.AreaOfEffectRange;
+        this.areaOfEffectDamage += upgrade.AreaOfEffectDamage;
 
-        this.projectile = upgrade.projectile;
-        this.projectileOffset = upgrade.projectileOffset;
-        this.projectileMaxTimeAlive += upgrade.projectileMaxTimeAlive;
-        this.projectileSpeed += upgrade.projectileSpeed;
+        this.projectile = upgrade.Projectile;
+        this.projectileOffset = upgrade.ProjectileOffset;
+        this.projectileMaxTimeAlive += upgrade.ProjectileMaxTimeAlive;
+        this.projectileSpeed += upgrade.ProjectileSpeed;
 
-        this.walkingSpeed += upgrade.walkingSpeed;
-        this.attackRange += upgrade.attackRange;
-        this.followRange += upgrade.followRange;
-
-        //~ re-set the agent values (may have changed)
-        NavMeshAgent minionAgent = upgrade.minionPrefab.GetComponent<NavMeshAgent>();
-        minionAgent.speed = this.walkingSpeed;
-        minionAgent.stoppingDistance = this.attackRange - 0.3f;
+        this.walkingSpeed += upgrade.WalkingSpeed;
+        this.attackRange += upgrade.AttackRange;
+        this.followRange += upgrade.FollowRange;
     }
     /// <summary> copies the values from the <paramref name="otherAttackBehaviour"/> into this one (overrides all) </summary>
     /// <param name="otherAttackBehaviour"> the other attack behaviour to copy the values from </param>
