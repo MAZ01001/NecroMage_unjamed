@@ -12,9 +12,6 @@ public class Enemy : MonoBehaviour{
     [SerializeField][Tooltip("the attack behaviour instance for this enemy")]            private AttackBehaviour attackBehaviour;
     [Header("Defeat reward")]
     [SerializeField][Tooltip("amount of exp awarded for defeating enemy")]               private uint experienceReward = 400;
-    [SerializeField][Tooltip("the collectible prefab / pile of bones to drop on death")] private GameObject dropObject = null;
-    [SerializeField][Min(0f)][Tooltip("HP to drop on death")]                            private float dropHP = 0f;
-    [SerializeField][Min(0f)][Tooltip("XP to drop on death")]                            private float dropXP = 0f;
     //~ private
     private NavMeshAgent agent;
     private bool playerInAttackRange;
@@ -111,17 +108,8 @@ public class Enemy : MonoBehaviour{
         Debug.Log($"[{this.gameObject.name} : Enemy] Ouch!");
         if((this.health -= damage) <= 0f){
             this.gameManager.AddExperience(this.experienceReward);
-            if(this.dropObject != null){
-                Collectible drop = Instantiate<GameObject>(
-                    this.dropObject,
-                    this.transform.position,
-                    Quaternion.identity
-                ).GetComponent<Collectible>();
-                drop.giveHP = this.dropHP;
-                drop.giveXP = this.dropXP;
-            }
-            GameObject.Destroy(this.gameObject);
             this.gameManager.enemiesDefeated++;
+            GameObject.Destroy(this.gameObject);
             return true;
         }
         return false;
