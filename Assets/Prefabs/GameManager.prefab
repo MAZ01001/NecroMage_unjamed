@@ -112,3 +112,11 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 642b993df161a0843a35feae87855b32, type: 3}
     - {fileID: 2800000, guid: 33defe81cf1c0914ebaf68f1f774a17e, type: 3}
     fps: 5
+  - gifMaterial: {fileID: 2100000, guid: 47120aba12d4cf7488c3dbf604d278c8, type: 2}
+    frames:
+    - {fileID: 2800000, guid: 32b4dd84856ecb945a23f602640b410f, type: 3}
+    - {fileID: 2800000, guid: 059215fa02f89a4468eab2068484b200, type: 3}
+    - {fileID: 2800000, guid: 4d6efa7721068fb46b16cf19df431a22, type: 3}
+    - {fileID: 2800000, guid: 9ff1d329d3997144c988458aeab0d96e, type: 3}
+    - {fileID: 2800000, guid: 00453a9ad7e11f647a15679f64c3432a, type: 3}
+    fps: 10
