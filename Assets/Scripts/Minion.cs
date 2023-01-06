@@ -66,7 +66,7 @@ public class Minion : MonoBehaviour{
                 this.agent.ResetPath();
             }else{
                 this.agent.SetDestination(this.closestEnemy.transform.position);
-                if(!this.lockOnEnemy) Debug.Log($"[{this.gameObject.name} : Minion] Enemy Spotted!");
+                if(!this.lockOnEnemy) Debug.Log($"[Minion : {this.gameObject.name}] Enemy Spotted!");
                 this.lockOnEnemy = true;
                 //~ if enemy is to the left, flip sprite horizontally else flip back → looks in enemies direction
                 this.FlipHorizontally(this.transform.position.x > this.closestEnemy.transform.position.x);
@@ -78,7 +78,7 @@ public class Minion : MonoBehaviour{
                     // FIXME ? meele attack does not work ???! (not projectile ~)
                     anim.SetBool("Attacking", true);
                     this.AttackEnemy();
-                    Debug.Log($"[{this.gameObject.name} : Minion] Pow!");
+                    Debug.Log($"[Minion : {this.gameObject.name}] Pow!");
                     StartCoroutine(this.DelayNextAttack(this.attackBehaviour.timeBetweenAttacks));
                 }
             }
@@ -118,6 +118,7 @@ public class Minion : MonoBehaviour{
         this.closestEnemyDistanceSquare = float.PositiveInfinity;
         float currentEnemyDistanceSquare;
         //~ get the closest enemy from all enemies in followRange, or stay at null when no enemy is in followRange
+        // TODO Physics.OverlapSphereNonAlloc()
         foreach(Collider enemyCollider in Physics.OverlapSphere(this.transform.position, this.attackBehaviour.followRange, this.enemyLayer)){
             currentEnemyDistanceSquare = (this.transform.position - enemyCollider.transform.position).sqrMagnitude;
             if(currentEnemyDistanceSquare < this.closestEnemyDistanceSquare){
@@ -145,6 +146,7 @@ public class Minion : MonoBehaviour{
             //~ projectile handles damage
         }else{
             if(this.attackBehaviour.areaOfEffectActive){
+                // TODO Physics.OverlapSphereNonAlloc()
                 foreach(Collider collider in Physics.OverlapSphere(this.transform.position, this.attackBehaviour.areaOfEffectRange, this.enemyLayer)){
                     Enemy enemy = collider.GetComponent<Enemy>();
                     if(enemy != null) enemy.Damage(this.attackBehaviour.areaOfEffectDamage);

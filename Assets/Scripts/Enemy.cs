@@ -94,7 +94,8 @@ public class Enemy : MonoBehaviour{
             //~ projectile handles damage
         }else{
             if(this.attackBehaviour.areaOfEffectActive){
-                foreach(Collider collider in Physics.OverlapSphere(this.transform.position, this.attackBehaviour.areaOfEffectRange, LayerMask.GetMask("Default"))){
+                // TODO Physics.OverlapSphereNonAlloc()
+                foreach(Collider collider in Physics.OverlapSphere(this.transform.position, this.attackBehaviour.areaOfEffectRange, LayerMask.GetMask("PlayerCollider"))){
                     if(collider.gameObject.CompareTag("Player")) collider.gameObject.GetComponent<PlayerManager>().Damage(this.attackBehaviour.areaOfEffectDamage);
                 }
             }else this.gameManager.Player.GetComponent<PlayerManager>().Damage(this.attackBehaviour.damage);

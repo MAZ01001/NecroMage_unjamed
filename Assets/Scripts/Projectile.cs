@@ -25,8 +25,9 @@ public class Projectile : MonoBehaviour{
     private void OnCollisionEnter(Collision collision){
         if(this.fromMinion){
             if(this.attackBehaviourLink.areaOfEffectActive){
-                foreach(Collider collider in Physics.OverlapSphere(this.transform.position, this.attackBehaviourLink.areaOfEffectRange, LayerMask.GetMask("Enemy"))){
-                    Enemy enemy = collider.GetComponent<Enemy>();
+                // TODO Physics.OverlapSphereNonAlloc()
+                foreach(Collider collider in Physics.OverlapSphere(this.transform.position, this.attackBehaviourLink.areaOfEffectRange, LayerMask.GetMask("EnemyCollider"))){
+                    Enemy enemy = collider.transform.parent.GetComponent<Enemy>();
                     if(enemy != null) enemy.Damage(this.attackBehaviourLink.areaOfEffectDamage);
                 }
             }else{
@@ -34,12 +35,13 @@ public class Projectile : MonoBehaviour{
                 if(enemy != null) enemy.Damage(this.attackBehaviourLink.damage);
             }
         }else if(collision.gameObject.CompareTag("Player")){
-            collision.gameObject.GetComponent<PlayerManager>().Damage(this.attackBehaviourLink.damage);
+            collision.transform.parent.GetComponent<PlayerManager>().Damage(this.attackBehaviourLink.damage);
             //~ no AOE here since the enemies can only damage player and not minions or themselves
         }else if(this.attackBehaviourLink.areaOfEffectActive){
             //~ if player is not directly hit, might hit indirectly
-            foreach(Collider collider in Physics.OverlapSphere(this.transform.position, this.attackBehaviourLink.areaOfEffectRange, LayerMask.GetMask("Default"))){
-                if(collider.CompareTag("Player")){ collider.GetComponent<PlayerManager>().Damage(this.attackBehaviourLink.areaOfEffectDamage); }
+            // TODO Physics.OverlapSphereNonAlloc()
+            foreach(Collider collider in Physics.OverlapSphere(this.transform.position, this.attackBehaviourLink.areaOfEffectRange, LayerMask.GetMask("PlayerCollider"))){
+                if(collider.CompareTag("Player")){ collider.transform.parent.GetComponent<PlayerManager>().Damage(this.attackBehaviourLink.areaOfEffectDamage); }
             }
         }
         // TODO spawn explosion here ~ one second - then destroy both
