@@ -717,7 +717,7 @@ GameObject:
   - component: {fileID: 6828260513644454562}
   - component: {fileID: 8122185164032480710}
   - component: {fileID: 9105928725341278334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OmegaMan
   m_TagString: Player
   m_Icon: {fileID: 0}

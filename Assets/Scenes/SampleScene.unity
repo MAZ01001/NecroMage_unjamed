@@ -6025,7 +6025,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1097137780}
   - component: {fileID: 1097137781}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: '# Enemies'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7862,7 +7862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1601608440}
   - component: {fileID: 1601608441}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: '# Maps'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8007,7 +8007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1617599347}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: '# Minions'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8830,7 +8830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1824215148}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: '# Projectiles'
   m_TagString: Untagged
   m_Icon: {fileID: 0}

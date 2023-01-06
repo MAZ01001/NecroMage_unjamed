@@ -8,16 +8,16 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - Terrain
   - Water
   - UI
   - PostProcess
-  - Enemy
-  - Minion
+  - EnemyCollider
+  - PlayerCollider
+  - NavEnemies
+  - NavMinions
+  - NavPlayer
   - Projectile
-  - NavLayer
-  - CameraHole
-  - 
   - 
   - 
   - 
