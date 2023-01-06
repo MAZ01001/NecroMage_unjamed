@@ -152,9 +152,6 @@ MonoBehaviour:
   health: 1
   attackBehaviour: {fileID: 11400000, guid: 8f6c9dafb1dcf48489276e7f4abc72ac, type: 2}
   experienceReward: 400
-  dropObject: {fileID: 0}
-  dropHP: 0
-  dropXP: 0
   gameManager: {fileID: 0}
 --- !u!195 &8122185164032480710
 NavMeshAgent:
