@@ -1313,6 +1313,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f038b95c38721484385a075ee6a4508f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphic: {fileID: 7129427938993911864}
+  speed: 0.3
+  saturation: 1
+  brightness: 0.2
 --- !u!1 &7129427939325951650
 GameObject:
   m_ObjectHideFlags: 0
