@@ -49,11 +49,14 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: e41b9c1740e2be645ba8485a609713da, type: 2}
   resolutionDropdownUI: {fileID: 0}
   timerText: {fileID: 0}
+  experienceSlider: {fileID: 0}
   pauseMenuUI: {fileID: 0}
+  upgradeMenuUI: {fileID: 0}
+  upgradePanelUI: {fileID: 0}
+  upgradeBoxPrefab: {fileID: 8494158313439182010, guid: 05e7acf8096f34f40bc034b502001696,
+    type: 3}
   gameOverMenuUI: {fileID: 0}
   highscoreTMPro: {fileID: 0}
-  upgradeMenuUI: {fileID: 0}
-  experienceSlider: {fileID: 0}
   startTime: 600
   minionContainer: {fileID: 0}
   allMinionPrefabs:
@@ -63,6 +66,7 @@ MonoBehaviour:
   - {fileID: 3650090750276049826, guid: 9a28f8bfc10266348b7d75f2829c3f76, type: 3}
   maxMinionClones: 3
   allUpgrades: []
+  enemiesDefeated: 0
 --- !u!114 &7873364947403226336
 MonoBehaviour:
   m_ObjectHideFlags: 0
