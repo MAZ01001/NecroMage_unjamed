@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualChild: {fileID: 7027845906495429499}
-  facingRight: 1
+  facingRight: 0
   attackBehaviourLink: {fileID: 0}
   travelDirectionNormal: {x: 0, y: 0, z: 0}
   fromMinion: 1
@@ -76,7 +76,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723123639712742001}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 6979481107190069070}
   - component: {fileID: 6301433174117623854}
   - component: {fileID: 4587699490165779020}
-  - component: {fileID: 4363031485224946880}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -107,14 +106,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7027845906495429499}
-  m_LocalRotation: {x: 0.12128259, y: -0.024005853, z: 0.48060876, w: 0.8681759}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0.45, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 723123639712742029}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 13.513, y: 4.418, z: 58.46}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!33 &6301433174117623854
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -165,23 +164,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4363031485224946880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7027845906495429499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab90577b3708dcb479719c965f7529ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frames:
-  - {fileID: 2800000, guid: 32b4dd84856ecb945a23f602640b410f, type: 3}
-  - {fileID: 2800000, guid: 059215fa02f89a4468eab2068484b200, type: 3}
-  - {fileID: 2800000, guid: 4d6efa7721068fb46b16cf19df431a22, type: 3}
-  - {fileID: 2800000, guid: 9ff1d329d3997144c988458aeab0d96e, type: 3}
-  - {fileID: 2800000, guid: 00453a9ad7e11f647a15679f64c3432a, type: 3}
-  - {fileID: 2800000, guid: a28a973db5df29e49b3fe4b8e554f780, type: 3}
-  fps: 12

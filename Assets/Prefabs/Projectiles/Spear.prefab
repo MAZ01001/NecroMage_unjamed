@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 723123639712742029}
   - component: {fileID: 2707627503160639561}
   - component: {fileID: 2800545803120985620}
-  - component: {fileID: -2552221240921289114}
+  - component: {fileID: 8855342945579790929}
   m_Layer: 12
   m_Name: Spear
   m_TagString: Player
@@ -68,19 +68,20 @@ MonoBehaviour:
   attackBehaviourLink: {fileID: 0}
   travelDirectionNormal: {x: 0, y: 0, z: 0}
   fromMinion: 1
---- !u!135 &-2552221240921289114
-SphereCollider:
+--- !u!136 &8855342945579790929
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723123639712742001}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0.45, z: 0}
+  m_Radius: 0.05
+  m_Height: 0.5
+  m_Direction: 0
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1 &7027845906495429499
 GameObject:
   m_ObjectHideFlags: 0
