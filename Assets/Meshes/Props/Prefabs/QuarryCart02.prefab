@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7193331042260315765}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: QuarryCart02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
