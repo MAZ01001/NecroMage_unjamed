@@ -17,12 +17,10 @@ MonoBehaviour:
   areaOfEffectActive: 1
   areaOfEffectRange: 6
   areaOfEffectDamage: 2
-  projectile: {fileID: 723123639712742001, guid: 0c57ee4d0e675ce43bacb38eb8d3613c,
+  projectile: {fileID: 723123639712742001, guid: 810635b5aef977e4e81a115a579a724a,
     type: 3}
-  projectileOffset: {x: 0, y: 0, z: 0}
   projectileMaxTimeAlive: 4
   projectileSpeed: 2
   walkingSpeed: 6
   attackRange: 6
   followRange: 100
-  upgrades: []

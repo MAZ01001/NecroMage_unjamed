@@ -85,8 +85,9 @@ public class Enemy : MonoBehaviour{
             Vector3 direction = this.gameManager.Player.transform.position - this.transform.position;
             Projectile projectile = Instantiate<GameObject>(
                 this.attackBehaviour.projectile,
-                this.transform.position + this.attackBehaviour.projectileOffset,
-                Quaternion.LookRotation(direction, Vector3.up)
+                this.transform.position,
+                Quaternion.identity,
+                this.gameManager.ProjectileContainer
             ).GetComponent<Projectile>();
             projectile.attackBehaviourLink = this.attackBehaviour;
             projectile.travelDirectionNormal = direction.normalized;

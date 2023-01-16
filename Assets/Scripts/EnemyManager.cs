@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour{
     //~ inspector (public)
     [Header("Timing")]
     [SerializeField][Min(0f)][Tooltip("Time in seconds to wait for next spawn")]                     public float spawnTimer;
+    [SerializeField][Min(1)][Tooltip("Maximum amount of enemies in scene")]                          public int maxEnemies = 100;
     //~ public
     [HideInInspector] public bool spawnLoopRunning = true;
     //~ public (getter)
@@ -26,7 +27,7 @@ public class EnemyManager : MonoBehaviour{
     private IEnumerator SpawnLoop(){
         while(this.spawnLoopRunning){
             yield return new WaitForSeconds(this.spawnTimer);
-            this.SpawnRandomEnemy();
+            if(this.transform.childCount <= this.maxEnemies) this.SpawnRandomEnemy();
         }
     }
 

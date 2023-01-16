@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 723123639712742029}
   - component: {fileID: 2707627503160639561}
   - component: {fileID: 2800545803120985620}
-  - component: {fileID: 6379836101624983260}
+  - component: {fileID: 3267990883110173616}
   m_Layer: 12
   m_Name: ProjectileTemplate
   m_TagString: Player
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723123639712742001}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
   attackBehaviourLink: {fileID: 0}
   travelDirectionNormal: {x: 0, y: 0, z: 0}
   fromMinion: 1
---- !u!136 &6379836101624983260
-CapsuleCollider:
+--- !u!135 &3267990883110173616
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -78,10 +78,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.05
-  m_Height: 0.5
-  m_Direction: 0
-  m_Center: {x: 0, y: 0.4, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7027845906495429499
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,14 +106,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7027845906495429499}
-  m_LocalRotation: {x: 0.12128259, y: -0.024005853, z: 0.48060876, w: 0.8681759}
+  m_LocalRotation: {x: 0.22636828, y: -0.12547798, z: 0.46829012, w: 0.8448178}
   m_LocalPosition: {x: 0, y: 0.45, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 723123639712742029}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 13.513, y: 4.418, z: 58.46}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 58}
 --- !u!33 &6301433174117623854
 MeshFilter:
   m_ObjectHideFlags: 0

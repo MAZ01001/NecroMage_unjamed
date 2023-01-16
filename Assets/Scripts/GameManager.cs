@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour{
     [SerializeField][Tooltip("The time unscaled TMP on the game over menu ui")]              private TMP_Text timeUnscaledTMPro;
     [Header("Game Logic")]
     [SerializeField][Range(10, 3600)][Tooltip("The starting time for countdown in seconds")] private int startTime = 600;
+    [SerializeField][Tooltip("The projectile container game object")]                        private Transform projectileContainer;
     [SerializeField][Tooltip("The minion container game object")]                            private Transform minionContainer;
     [SerializeField][Tooltip("A list of all minion prefabs")]                                private List<GameObject> allMinionPrefabs;
     [SerializeField][Range(1, 8)][Tooltip("The maximum number of clones for each minion")]   private int maxMinionClones = 3;
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour{
     public ulong NextLevelXP => this.level * 1000;
     public ref GameObject Player => ref this.player;
     public ref AudioMixer AudioMixer => ref this.audioMixer;
+    public ref Transform ProjectileContainer => ref this.projectileContainer;
 
     //~ reset time on start of game
     //~ why: timeScale is keeped across scenes so when exiting wile paused, time is paused when navigating back into the game !

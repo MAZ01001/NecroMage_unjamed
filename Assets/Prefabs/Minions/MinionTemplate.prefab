@@ -69,12 +69,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  attackBehaviour: {fileID: 11400000, guid: ce2ee5d2fd9bb244d80ff59792aac72d, type: 2}
   playerFollowRange: 4
-  closestDistance: 0.8
-  startingMinion: {fileID: 11400000, guid: ce2ee5d2fd9bb244d80ff59792aac72d, type: 2}
-  minionBasePrefab: {fileID: 3650090750276049826}
-  minionObjectsContainer: {fileID: 0}
+  attackBehaviour: {fileID: 11400000, guid: ce2ee5d2fd9bb244d80ff59792aac72d, type: 2}
 --- !u!195 &5959032840507444143
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -84,7 +80,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3650090750276049826}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
@@ -93,7 +89,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4

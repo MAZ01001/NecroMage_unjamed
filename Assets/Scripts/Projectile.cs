@@ -9,20 +9,21 @@ public class Projectile : MonoBehaviour{
     [HideInInspector] public Vector3 travelDirectionNormal;
     [HideInInspector] public bool fromMinion = true;
     //~ private
-    private float startTime;
+    private float timeAlive = 0f;
 
     private void Start(){
-        this.startTime = Time.realtimeSinceStartup;
         //~ if traveling to the left, flip sprite horizontally else flip back → looks in the direction of travel
         this.FlipHorizontally(this.travelDirectionNormal.x < 0);
     }
 
     private void FixedUpdate(){
-        if((Time.realtimeSinceStartup - this.startTime) >= this.attackBehaviourLink.projectileMaxTimeAlive) GameObject.Destroy(this.gameObject);
+        if((this.timeAlive += Time.fixedDeltaTime) >= this.attackBehaviourLink.projectileMaxTimeAlive) GameObject.Destroy(this.gameObject);
         else this.transform.position += this.travelDirectionNormal * this.attackBehaviourLink.projectileSpeed * Time.fixedDeltaTime;
     }
 
     private void OnCollisionEnter(Collision collision){
+        // TODO detect if minion or enemy (transform parent ?)
+        // FIXME damage only on collider transform parent get component...
         if(this.fromMinion){
             if(this.attackBehaviourLink.areaOfEffectActive){
                 // TODO Physics.OverlapSphereNonAlloc()
@@ -45,6 +46,7 @@ public class Projectile : MonoBehaviour{
             }
         }
         // TODO spawn explosion here ~ one second - then destroy both
+        // BUG this does not work ?
         GameObject.Destroy(this.gameObject);
     }
 
@@ -56,6 +58,11 @@ public class Projectile : MonoBehaviour{
             this.visualChild.transform.localScale.x * -1f,
             this.visualChild.transform.localScale.y,
             this.visualChild.transform.localScale.z
+        );
+        this.visualChild.transform.localEulerAngles = new Vector3(
+            this.visualChild.transform.localEulerAngles.x,
+            this.visualChild.transform.localEulerAngles.y,
+            this.visualChild.transform.localEulerAngles.z * -1f
         );
     }
 }
